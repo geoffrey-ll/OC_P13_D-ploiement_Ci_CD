@@ -1,6 +1,6 @@
 **/__pycache__
 venv
-message_for_commit.txt
+txt_for_commit.txt
 */migrations/*.py
 oc-lettings-site.sqlite3
 

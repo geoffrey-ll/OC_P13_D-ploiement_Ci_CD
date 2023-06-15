@@ -28,6 +28,9 @@ DJANGO_APPS = [
 
 PROJECT_APPS = [
     "oc_lettings_site.apps.OCLettingsSiteConfig",
+    "index",
+    "lettings",
+    "profiles",
 ]
 
 INSTALLED_APPS = DJANGO_APPS + PROJECT_APPS
@@ -88,8 +91,8 @@ AUTH_PASSWORD_VALIDATORS = [
 
 # Internationalization
 # https://docs.djangoproject.com/en/3.0/topics/i18n/
-LANGUAGE_CODE = "fr"
-TIME_ZONE = "Europe/Paris"
+LANGUAGE_CODE = "en-us"
+TIME_ZONE = "UTC"
 USE_I18N = True
 USE_L10N = True
 USE_TZ = True
@@ -97,16 +100,3 @@ USE_TZ = True
 # Static files (CSS, JavaScript, Images)
 # https://docs.djangoproject.com/en/3.0/howto/static-files/
 STATIC_URL = '/static/'
-# STATICFILES_DIRS = [os.path.join(BASE_DIR, 'static')]
-#
-# DEFAULT_AUTO_FIELD = 'django.db.models.BigAutoField'
-#
-# LOGIN_URL = "home-page"
-# LOGIN_REDIRECT_URL = "flux-user"
-# LOGOUT_REDIRECT_URL = LOGIN_URL
-#
-# PASSWORD_CHANGE_DONE = ""
-#
-# MEDIA_URL = "/media/"
-#
-# MEDIA_ROOT = "media/"
