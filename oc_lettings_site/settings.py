@@ -27,7 +27,6 @@ DJANGO_APPS = [
 ]
 
 PROJECT_APPS = [
-    "index",
     "lettings",
     "profiles",
 ]
