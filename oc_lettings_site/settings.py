@@ -27,7 +27,6 @@ DJANGO_APPS = [
 ]
 
 PROJECT_APPS = [
-    "oc_lettings_site.apps.OCLettingsSiteConfig",
     "index",
     "lettings",
     "profiles",
