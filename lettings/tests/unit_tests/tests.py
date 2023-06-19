@@ -18,7 +18,7 @@ class LettingsIndexTest(TestCase):
         cls.address = Address.objects.create(
             number=4, street="my street", city="in city", state="room",
             zip_code=12345, country_iso_code="RSM")
-        cls.letting = Letting.objects.create(title="A letting", address_id=1)
+        cls.letting = Letting.objects.create(title="A letting", address=cls.address)
 
     def setUp(self):
         """Configuration commune pour à chaque test.
@@ -56,7 +56,7 @@ class LettingsLettingTest(TestCase):
         cls.address = Address.objects.create(
             number=4, street="my street", city="in city", state="room",
             zip_code=12345, country_iso_code="RSM")
-        cls.letting = Letting.objects.create(title="A letting", address_id=1)
+        cls.letting = Letting.objects.create(title="A letting", address=cls.address)
 
     def setUp(self):
         """Configuration commune pour à chaque test.
