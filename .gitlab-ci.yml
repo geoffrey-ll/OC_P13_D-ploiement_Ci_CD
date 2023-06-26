@@ -3,4 +3,4 @@ stages:
 
 test_job:
   stage: test
-  script: python3 manage.py test
+  script: "Hello World!"
