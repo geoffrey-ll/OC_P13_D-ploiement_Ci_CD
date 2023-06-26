@@ -1,12 +1,10 @@
 stages:
   - test
 
-
 cache:
   paths:
     - .m2/repository
   key: "$CI_JOB_NAME"
-
 
 test_job:
   stage: test
