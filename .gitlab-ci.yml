@@ -8,4 +8,4 @@ cache:
 
 test_job:
   stage: test
-  script: "Hello World!"
+  script: py print("Hello World!")
