@@ -1,11 +1,12 @@
-stages:
-  - test
-
-cache:
-  paths:
-    - .m2/repository
-  key: "$CI_JOB_NAME"
-
-test_job:
-  stage: test
-  script: python print("Hello World!")
+test:
+  services:
+    - postgres:alpine
+  variables:
+    POSTGRES_DB: custom_db
+    PSOTGRES_USER: custom_user
+    POSTGRES_PASSWORD: custom_pass
+  script:
+    - apt-get update qy
+    - apt-get install -y python-dev python-pip
+    - pip install -r requirements.txt
+    - python manage.py test
