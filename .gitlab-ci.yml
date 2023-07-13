@@ -5,7 +5,7 @@ stages:
 cache:
   key: cache-for-all-stage
   paths:
-    - .m2/repository
+    - .common_cache/
 
 #build_job:
 #  stage: build
