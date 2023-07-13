@@ -2,10 +2,10 @@ stages:
   - test
   - build
 
-cache:
-  key: cache-for-all-stage
-  paths:
-    - .common_cache/
+#cache:
+#  key: cache-for-all-stages
+#  paths:
+#    - .common_cache/
 
 #build_job:
 #  stage: build
