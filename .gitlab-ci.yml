@@ -1,4 +1,8 @@
-test:
+stages:
+  - test
+
+pytest_job:
+  stage: test
   services:
     - postgres:alpine
   variables:
