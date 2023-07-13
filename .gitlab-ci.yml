@@ -1,6 +1,6 @@
 stages:
-  - build
   - test
+  - build
 
 cache:
   paths:
@@ -41,7 +41,7 @@ pytest_job:
     - python3 manage.py test
 
 pytest_2_job:
-  stage: test
+  stage: build
   services:
     - postgres:alpine
   variables:
