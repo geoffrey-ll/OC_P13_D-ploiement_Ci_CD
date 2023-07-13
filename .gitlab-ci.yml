@@ -3,7 +3,7 @@ stages:
   - build
 
 cache:
-  key: "$CI_JOB_STAGE"
+  key: cache-for-all-stage
   paths:
     - .m2/repository
 
