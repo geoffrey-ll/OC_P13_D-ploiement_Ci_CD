@@ -2,10 +2,11 @@ stages:
   - build
   - test
 
-#cache:
+cache:
 #  - key: "$CI_JOB_NAME"
-#    paths:
-#      - .m2/repository
+  - key: "build"
+    paths:
+      - .m2/repository
 
 build_job:
   stage: build
