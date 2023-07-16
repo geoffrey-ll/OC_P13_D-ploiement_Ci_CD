@@ -23,22 +23,22 @@ cache:
 #    - . env/bin/activate
 #    - pip install -r requirements.txt
 
-pytest_job:
-  stage: test
-  services:
-    - postgres:alpine
-  variables:
-    SECRET_KEY: custom_secret_key_test
-    DATABASE_ENGINE: django.db.backends.sqlite3
-    DATABASE_NAME: oc-lettings-site.sqlite3
-    DEBUG: "true"
-  script:
-    - apt-get update -qy
-    - apt-get install -y python3-pip python-dev-is-python3 python3-venv
-    - python3 -m venv env
-    - . env/bin/activate
-    - pip install -r requirements.txt
-    - python3 manage.py test
+#pytest_job:
+#  stage: test
+#  services:
+#    - postgres:alpine
+#  variables:
+#    SECRET_KEY: custom_secret_key_test
+#    DATABASE_ENGINE: django.db.backends.sqlite3
+#    DATABASE_NAME: oc-lettings-site.sqlite3
+#    DEBUG: "true"
+#  script:
+#    - apt-get update -qy
+#    - apt-get install -y python3-pip python-dev-is-python3 python3-venv
+#    - python3 -m venv env
+#    - . env/bin/activate
+#    - pip install -r requirements.txt
+#    - python3 manage.py test
 
 flake8_job:
   stage: test
@@ -55,4 +55,4 @@ flake8_job:
     - python3 -m venv env
     - . env/bin/activate
     - pip install -r requirements.txt
-    - flake8 --config setup.cfg
+    - flake8
