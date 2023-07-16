@@ -55,5 +55,4 @@ flake8_job:
     - python3 -m venv venv
     - . venv/bin/activate
     - pip install -r requirements.txt
-#    - flake8 --max-line-length 103 --exclude **/migrations/*,**/venv
     - flake8 --config setup.cfg
