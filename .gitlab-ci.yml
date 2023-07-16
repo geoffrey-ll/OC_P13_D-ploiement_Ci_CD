@@ -11,7 +11,8 @@ build_job:
   stage: build
   cache:
     - key: "build"
-      paths: ".m2/repository"
+      paths:
+        - .m2/repository
   services:
     - postgres:alpine
   variables:
@@ -47,7 +48,8 @@ flake8_job:
   stage: test
   cache:
     - key: "build"
-      paths: .m2/repository
+      paths:
+        - .m2/repository
 #  services:
 #    - postgres:alpine
 #  variables:
