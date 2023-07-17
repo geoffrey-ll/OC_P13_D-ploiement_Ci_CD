@@ -5,6 +5,7 @@ stages:
 
 tests_job:
   stage: test
+  image: python:3.10
 #  services:
 #    - postgres:alpine
 #  variables:
