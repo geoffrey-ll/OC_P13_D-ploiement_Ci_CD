@@ -9,8 +9,8 @@ tests_job:
 #  services:
 #    - postgres:alpine
   variables:
-    SECRET_KEY: custom_secret_key_test
-#    DATABASE_ENGINE: django.db.backends.sqlite3
+#    SECRET_KEY: custom_secret_key_test
+    DATABASE_ENGINE: django.db.backends.sqlite3
 #    DATABASE_NAME: oc-lettings-site.sqlite3
     DEBUG: "true"
   before_script:
