@@ -11,3 +11,10 @@ tests_job:
   script:
     - python3 manage.py test
     - flake8 --config setup.cfg
+
+img_docker_job:
+  stage: build
+  script:
+    - docker build -t img_yml:v0.01 .
+#    - docker tag img_yml:v0.01 goclusername/img_yml:v0.01
+#    - docker push goclusername/img_yml:v0.01
