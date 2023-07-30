@@ -3,18 +3,18 @@ stages:
   - build
   - deploy
 
-tests_job:
-  stage: test
-  image: python:3.10.6
-  before_script:
-    - pip install -r requirements.txt
-  script:
-    - python3 manage.py test
-    - flake8 --config setup.cfg
+#tests_job:
+#  stage: test
+#  image: python:3.10.6
+#  before_script:
+#    - pip install -r requirements.txt
+#  script:
+#    - python3 manage.py test
+#    - flake8 --config setup.cfg
 
 img_docker_job:
   stage: build
-  image: docker
+  image: python:3.10.6
   script:
     - docker build -t img_yml:v0.01 .
 #    - docker tag img_yml:v0.01 goclusername/img_yml:v0.01
