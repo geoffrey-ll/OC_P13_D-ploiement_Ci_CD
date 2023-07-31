@@ -13,11 +13,11 @@ stages:
 #    - flake8 --config setup.cfg
 
 img_docker_job:
-  services:
-#    - docker:23.0.4
-    - docker docker_build
   stage: build
   image: docker:24.0.4
+  services:
+#    - docker:23.0.4
+    - docker:24.0.4-dind
   script:
     - docker build -t img_yml:latest .
 #    - docker tag img_yml:v0.01 goclusername/img_yml:v0.01
