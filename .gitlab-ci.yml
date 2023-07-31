@@ -15,8 +15,8 @@ stages:
 job:
   image: alpine
   script:
-    - echo $CI_COMMIT_SHORT_SHA
-    - echo ${CI_COMMIT_SHORT_SHA}
+    - echo $CI_COMMIT_SHA1
+    - echo ${CI_COMMIT_SHORT_SHA1}
 
 img_docker_job:
   stage: build
@@ -30,5 +30,3 @@ img_docker_job:
     - docker push ${HUB_DOCKER_USERNAME}/${IMAGE_NAME}:${CI_COMMIT_SHORT_SHA}
     - docker push ${HUB_DOCKER_USERNAME}/${IMAGE_NAME}:latest
     - docker logout
-#    - docker tag img_yml:v0.01 goclusername/img_yml:v0.01
-#    - docker push goclusername/img_yml:v0.01
