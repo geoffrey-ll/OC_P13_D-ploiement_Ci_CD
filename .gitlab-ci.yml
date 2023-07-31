@@ -14,14 +14,11 @@ stages:
 
 
 job:
-  image: python
-  before_script:
-    - export COMMIT_TIME=$(git show -s --format=%ct $CI_COMMIT_SHA)
+  image: alpine
   script:
     - echo ${CI_COMMIT_TIMESTAMP}
-    - echo ${COMMIT_TIME}
-    - $Env:TIME_2=$(git show -s --format=%ct $CI_COMMIT_SHA)
-    - WRITE-HOST $Env:TIME_2
+    - echo ${CI_COMMIT_TIMES}
+    - echo ${CI_COMMIT_TAMP}
 
 #img_docker_job:
 #  stage: build
