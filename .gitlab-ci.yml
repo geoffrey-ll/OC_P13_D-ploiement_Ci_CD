@@ -19,6 +19,8 @@ job:
      - IMAGE_VERSION=v${CI_COMMIT_TIMESTAMP:0:10}
      - IMAGE_NAME_LONG=${HUB_DOCKER_USERNAME}/${IMAGE_NAME}
   script:
+    - echo ${CI_COMMIT_TIMESTAMP}
+    - echo ${CI_COMMIT_TIMESTAMP:11:13}
     - echo ${IMAGE_VERSION}
     - echo ${IMAGE_NAME_LONG}
 
