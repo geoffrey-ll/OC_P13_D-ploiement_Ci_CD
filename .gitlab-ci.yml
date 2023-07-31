@@ -14,7 +14,7 @@ stages:
 
 
 job:
-  image: git
+  image: python
   before_script:
     - export COMMIT_TIME=$(git show -s --format=%ct $CI_COMMIT_SHA)
   script:
