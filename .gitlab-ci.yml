@@ -2,15 +2,15 @@ stages:
   - test
   - build
   - deploy
-#
-#tests_job:
-#  stage: test
-#  image: python:3.10.6
-#  before_script:
-#    - pip install -r requirements.txt
-#  script:
-#    - python3 manage.py test
-#    - flake8 --config setup.cfg
+
+tests_job:
+  stage: test
+  image: python:3.10.6
+  before_script:
+    - pip install -r requirements.txt
+  script:
+    - python3 manage.py test
+    - flake8 --config setup.cfg
 
 build_img_docker_job:
   stage: build
@@ -19,22 +19,12 @@ build_img_docker_job:
     - docker:24.0.4-dind
   variables:
     IMAGE_VERSION: v${CI_COMMIT_TIMESTAMP:0:9}
-    LONG_IMAGE_NAME: ${HUB_DOCKER_USERNAME}/${IMAGE_NAME}
+    IMAGE_NAME_LONG: ${HUB_DOCKER_USERNAME}/${IMAGE_NAME}
   script:
-    - docker build -t ${LONG_IMAGE_NAME}:${IMAGE_VERSION} .
-    - docker tag ${LONG_IMAGE_NAME}:${IMAGE_VERSION} ${LONG_IMAGE_NAME}:latest
+    - docker build -t ${IMAGE_NAME_LONG}:${IMAGE_VERSION} .
+    - docker tag ${IMAGE_NAME_LONG}:${IMAGE_VERSION} ${IMAGE_NAME_LONG}:latest
     - echo ${HUB_DOCKER_TOKEN} | 
       docker login -u ${HUB_DOCKER_USERNAME} --password-stdin
-    - docker push ${LONG_IMAGE_NAME}:${IMAGE_VERSION}
-    - docker push ${LONG_IMAGE_NAME}:latest
+    - docker push ${IMAGE_NAME_LONG}:${IMAGE_VERSION}
+    - docker push ${IMAGE_NAME_LONG}:latest
     - docker logout
-#  script:
-#    - docker build -t
-#      LONG_IMAGE_NAME:${IMAGE_VERSION} .
-#    - docker tag LONG_IMAGE_NAME:${IMAGE_VERSION}
-#      LONG_IMAGE_NAME:latest
-#    - echo ${HUB_DOCKER_TOKEN} |
-#      docker login -u ${HUB_DOCKER_USERNAME} --password-stdin
-#    - docker push LONG_IMAGE_NAME:${IMAGE_VERSION}
-#    - docker push LONG_IMAGE_NAME:latest
-#    - docker logout
