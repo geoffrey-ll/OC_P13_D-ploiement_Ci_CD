@@ -14,31 +14,30 @@ stages:
 
 
 
-#job:
-#  image: alpine
-#  before_script:
-#    - export VERSION_IMAGE=${CI_COMMIT_TIMESTAMP:0:9}
-#  script:
-#    - echo ${TIMESTAMP}
-#    - echo ${VERSION_IMAGE}
-
-
-
-img_docker_job:
-  stage: build
-  image: docker:24.0.4
-  services:
-    - docker:24.0.4-dind
+job:
+  image: alpine
   before_script:
-    - export VERSION_IMAGE=${CI_COMMIT_TIMESTAMP:0:9}
-#    - echo VERSION_IMAGE
+    - export VERSION_IMAGE=v${CI_COMMIT_TIMESTAMP:0:9}
   script:
-    - docker build -t
-      ${HUB_DOCKER_USERNAME}/${IMAGE_NAME}:${VERSION_IMAGE} .
-    - docker tag ${HUB_DOCKER_USERNAME}/${IMAGE_NAME}:${VERSION_IMAGE}
-      ${HUB_DOCKER_USERNAME}/${IMAGE_NAME}:latest
-    - echo ${HUB_DOCKER_TOKEN} |
-      docker login -u ${HUB_DOCKER_USERNAME} --password-stdin
-    - docker push ${HUB_DOCKER_USERNAME}/${IMAGE_NAME}:${VERSION_IMAGE}
-    - docker push ${HUB_DOCKER_USERNAME}/${IMAGE_NAME}:latest
-    - docker logout
+    - echo ${VERSION_IMAGE}
+
+
+
+#img_docker_job:
+#  stage: build
+#  image: docker:24.0.4
+#  services:
+#    - docker:24.0.4-dind
+#  before_script:
+#    - export VERSION_IMAGE=v${CI_COMMIT_TIMESTAMP:0:9}
+##    - echo VERSION_IMAGE
+#  script:
+#    - docker build -t
+#      ${HUB_DOCKER_USERNAME}/${IMAGE_NAME}:${VERSION_IMAGE} .
+#    - docker tag ${HUB_DOCKER_USERNAME}/${IMAGE_NAME}:${VERSION_IMAGE}
+#      ${HUB_DOCKER_USERNAME}/${IMAGE_NAME}:latest
+#    - echo ${HUB_DOCKER_TOKEN} |
+#      docker login -u ${HUB_DOCKER_USERNAME} --password-stdin
+#    - docker push ${HUB_DOCKER_USERNAME}/${IMAGE_NAME}:${VERSION_IMAGE}
+#    - docker push ${HUB_DOCKER_USERNAME}/${IMAGE_NAME}:latest
+#    - docker logout
