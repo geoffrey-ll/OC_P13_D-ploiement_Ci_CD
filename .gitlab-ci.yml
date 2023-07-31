@@ -12,15 +12,15 @@ stages:
 #    - python3 manage.py test
 #    - flake8 --config setup.cfg
 
-#
-job:
-  image: alpine
-  before_script:
-    - export TIMESTAMP="${CI_COMMIT_TIMESTAMP}"
-    - VERSION_IMAGE=${TIMESTAMP:0:9}AA${TIMESTAMP:10:12}AA${TIMESTAMP:14:15}AA${TIMESTAMP:17:18}
-  script:
-    - echo ${TIMESTAMP}
-    - echo ${VERSION_IMAGE}
+##
+#job:
+#  image: alpine
+#  before_script:
+#    - export TIMESTAMP="${CI_COMMIT_TIMESTAMP}"
+#    - VERSION_IMAGE=${TIMESTAMP:0:9}AA${TIMESTAMP:10:12}AA${TIMESTAMP:14:15}AA${TIMESTAMP:17:18}
+#  script:
+#    - echo ${TIMESTAMP}
+#    - echo ${VERSION_IMAGE}
 
 
 
@@ -31,7 +31,7 @@ img_docker_job:
     - docker:24.0.4-dind
   before_script:
     - export TIMESTAMP="${CI_COMMIT_TIMESTAMP}"
-    - VERSION_IMAGE={TIMESTAMP:0:9}_${TIMESTAMP:10:12}-${TIMESTAMP:14:15}-${TIMESTAMP:17:18}
+    - VERSION_IMAGE={TIMESTAMP:0:9}
   script:
     - docker build -t
       ${HUB_DOCKER_USERNAME}/${IMAGE_NAME}:${VERSION_IMAGE} .
