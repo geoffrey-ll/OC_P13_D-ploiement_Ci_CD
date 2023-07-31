@@ -28,3 +28,5 @@ build_img_docker_job:
     - docker push ${IMAGE_NAME_LONG}:${IMAGE_VERSION}
     - docker push ${IMAGE_NAME_LONG}:latest
     - docker logout
+  only:
+    - develop
