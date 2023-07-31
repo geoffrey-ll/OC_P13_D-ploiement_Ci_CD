@@ -20,7 +20,7 @@ img_docker_job:
   script:
     - docker build -t $HUB_DOCKER_USERNAME/$IMAGE_NAME:latest .
     - docker tag $HUB_DOCKER_USERNAME/$IMAGE_NAME:latest $HUB_DOCKER_USERNAME/$IMAGE_NAME:latest
-    - ECHO tesssssssssssssssssttt
+    - echo tesssssssssssssssssttt
     - $HUB_DOCKER_PASSWORD | docker login -u $HUB_DOCKER_USERNAME --password-stdin
     - docker push $HUB_DOCKER_USERNAME/$IMAGE_NAME:latest
 #    - docker tag img_yml:v0.01 goclusername/img_yml:v0.01
