@@ -13,8 +13,9 @@ stages:
 #    - flake8 --config setup.cfg
 
 job:
+  image: alpine
   script:
-    - echo $CI_COMMIT
+    - echo $CI_COMMIT_BRANCH
 
 #img_docker_job:
 #  stage: build
