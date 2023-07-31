@@ -14,24 +14,29 @@ stages:
 
 
 job:
-  image: alpine
+  image: python
+  before_script:
+    - export COMMIT_TIME=$(git show -s --format=datespec-full $CI_COMMIT_SHA)
+    - export COMMIT_TIME_2=$(git show -s --format=%datespec-full $CI_COMMIT_SHA)
   script:
     - echo ${CI_COMMIT_TIMESTAMP}
-    - echo ${CI_COMMIT_TIMES}
-    - echo ${CI_COMMIT_TAMP}
+    - echo ${COMMIT_TIME}
+        - echo ${COMMIT_TIME_2}
 
-#img_docker_job:
-#  stage: build
-#  image: docker:24.0.4
-#  services:
-#    - docker:24.0.4-dind
-#  script:
-#    - docker build -t
-#      ${HUB_DOCKER_USERNAME}/${IMAGE_NAME}:${CI_COMMIT_SHORT_SHA} .
-#    - docker tag ${HUB_DOCKER_USERNAME}/${IMAGE_NAME}:${CI_COMMIT_SHORT_SHA}
-#      ${HUB_DOCKER_USERNAME}/${IMAGE_NAME}:latest
-#    - echo ${HUB_DOCKER_TOKEN} |
-#      docker login -u ${HUB_DOCKER_USERNAME} --password-stdin
-#    - docker push ${HUB_DOCKER_USERNAME}/${IMAGE_NAME}:${CI_COMMIT_SHORT_SHA}
-#    - docker push ${HUB_DOCKER_USERNAME}/${IMAGE_NAME}:latest
-#    - docker logout
+img_docker_job:
+  stage: build
+  image: docker:24.0.4
+  services:
+    - docker:24.0.4-dind
+  before_script:
+    - VERSION_IMAGE=${CI_COMMIT_TIMESTAMP}
+  script:
+    - docker build -t
+      ${HUB_DOCKER_USERNAME}/${IMAGE_NAME}:${VERSION_IMAGE} .
+    - docker tag ${HUB_DOCKER_USERNAME}/${IMAGE_NAME}:${VERSION_IMAGE}
+      ${HUB_DOCKER_USERNAME}/${IMAGE_NAME}:latest
+    - echo ${HUB_DOCKER_TOKEN} |
+      docker login -u ${HUB_DOCKER_USERNAME} --password-stdin
+    - docker push ${HUB_DOCKER_USERNAME}/${IMAGE_NAME}:${VERSION_IMAGE}
+    - docker push ${HUB_DOCKER_USERNAME}/${IMAGE_NAME}:latest
+    - docker logout
