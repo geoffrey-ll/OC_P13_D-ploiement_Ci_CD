@@ -13,29 +13,31 @@ stages:
 #    - flake8 --config setup.cfg
 
 #
-#job:
-#  image: python
-#  before_script:
-#    - export VERSION_IMAGE=${CI_COMMIT_TIMESTAMP}
-#  script:
-#    - echo ${VERSION_IMAGE}
-
-
-
-img_docker_job:
-  stage: build
-  image: docker:24.0.4
-  services:
-    - docker:24.0.4-dind
+job:
+  image: python
   before_script:
-    - export VERSION_IMAGE="${CI_COMMIT_TIMESTAMP}"
+    - export TIMESTAMP="${CI_COMMIT_TIMESTAMP}"
+    - VERSION_IMAGE = ${TIMESTAMP:0:9}_${TIMESTAMP:10:12}-${TIMESTAMP:14:15}-${TIMESTAMP:17:18}
   script:
-    - docker build -t
-      ${HUB_DOCKER_USERNAME}/${IMAGE_NAME}:${VERSION_IMAGE} .
-    - docker tag ${HUB_DOCKER_USERNAME}/${IMAGE_NAME}:${VERSION_IMAGE}
-      ${HUB_DOCKER_USERNAME}/${IMAGE_NAME}:latest
-    - echo ${HUB_DOCKER_TOKEN} |
-      docker login -u ${HUB_DOCKER_USERNAME} --password-stdin
-    - docker push ${HUB_DOCKER_USERNAME}/${IMAGE_NAME}:${VERSION_IMAGE}
-    - docker push ${HUB_DOCKER_USERNAME}/${IMAGE_NAME}:latest
-    - docker logout
+    - echo ${VERSION_IMAGE}
+
+
+
+#img_docker_job:
+#  stage: build
+#  image: docker:24.0.4
+#  services:
+#    - docker:24.0.4-dind
+#  before_script:
+#    - export TIMESTAMP="${CI_COMMIT_TIMESTAMP}"
+#    - VERSION_IMAGE = ${TIMESTAMP:0:9}_${TIMESTAMP:10:12}-${TIMESTAMP:14:15}-${TIMESTAMP:17:18}
+#  script:
+#    - docker build -t
+#      ${HUB_DOCKER_USERNAME}/${IMAGE_NAME}:${VERSION_IMAGE} .
+#    - docker tag ${HUB_DOCKER_USERNAME}/${IMAGE_NAME}:${VERSION_IMAGE}
+#      ${HUB_DOCKER_USERNAME}/${IMAGE_NAME}:latest
+#    - echo ${HUB_DOCKER_TOKEN} |
+#      docker login -u ${HUB_DOCKER_USERNAME} --password-stdin
+#    - docker push ${HUB_DOCKER_USERNAME}/${IMAGE_NAME}:${VERSION_IMAGE}
+#    - docker push ${HUB_DOCKER_USERNAME}/${IMAGE_NAME}:latest
+#    - docker logout
