@@ -12,11 +12,6 @@ stages:
 #    - python3 manage.py test
 #    - flake8 --config setup.cfg
 
-job:
-  image: alpine
-  script:
-    - echo $CI_COMMIT_SHA1
-    - echo ${CI_COMMIT_SHORT_SHA1}
 
 img_docker_job:
   stage: build
@@ -24,9 +19,12 @@ img_docker_job:
   services:
     - docker:24.0.4-dind
   script:
-    - docker build -t ${HUB_DOCKER_USERNAME}/${IMAGE_NAME}:${CI_COMMIT_SHORT_SHA} .
-    - docker tag ${HUB_DOCKER_USERNAME}/${IMAGE_NAME}:${CI_COMMIT_SHORT_SHA} ${HUB_DOCKER_USERNAME}/${IMAGE_NAME}:latest
-    - echo ${HUB_DOCKER_TOKEN} | docker login -u ${HUB_DOCKER_USERNAME} --password-stdin
+    - docker build -t 
+      ${HUB_DOCKER_USERNAME}/${IMAGE_NAME}:${CI_COMMIT_SHORT_SHA} .
+    - docker tag ${HUB_DOCKER_USERNAME}/${IMAGE_NAME}:${CI_COMMIT_SHORT_SHA} 
+      ${HUB_DOCKER_USERNAME}/${IMAGE_NAME}:latest
+    - echo ${HUB_DOCKER_TOKEN} | 
+      docker login -u ${HUB_DOCKER_USERNAME} --password-stdin
     - docker push ${HUB_DOCKER_USERNAME}/${IMAGE_NAME}:${CI_COMMIT_SHORT_SHA}
     - docker push ${HUB_DOCKER_USERNAME}/${IMAGE_NAME}:latest
     - docker logout
