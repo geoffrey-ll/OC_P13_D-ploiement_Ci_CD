@@ -30,8 +30,8 @@ img_docker_job:
   services:
     - docker:24.0.4-dind
   before_script:
-    - export VERSION_IMAGE=${CI_COMMIT_TIMESTAMP}
-    - echo VERSION_IMAGE
+    - export VERSION_IMAGE=${CI_COMMIT_TIMESTAMP:0:9}
+#    - echo VERSION_IMAGE
   script:
     - docker build -t
       ${HUB_DOCKER_USERNAME}/${IMAGE_NAME}:${VERSION_IMAGE} .
