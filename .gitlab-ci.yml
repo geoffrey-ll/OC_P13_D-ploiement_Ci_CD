@@ -13,19 +13,28 @@ stages:
 #    - flake8 --config setup.cfg
 
 
-
-img_docker_job:
-  stage: build
-  image: docker:24.0.4
-  services:
-    - docker:24.0.4-dind
+job:
+  image: alpine
+  before_script:
+    - export COMMIT_TIME=$(git show -s --format=%ct $CI_COMMIT_SHA)
   script:
-    - docker build -t 
-      ${HUB_DOCKER_USERNAME}/${IMAGE_NAME}:${CI_COMMIT_SHORT_SHA} .
-    - docker tag ${HUB_DOCKER_USERNAME}/${IMAGE_NAME}:${CI_COMMIT_SHORT_SHA} 
-      ${HUB_DOCKER_USERNAME}/${IMAGE_NAME}:latest
-    - echo ${HUB_DOCKER_TOKEN} | 
-      docker login -u ${HUB_DOCKER_USERNAME} --password-stdin
-    - docker push ${HUB_DOCKER_USERNAME}/${IMAGE_NAME}:${CI_COMMIT_SHORT_SHA}
-    - docker push ${HUB_DOCKER_USERNAME}/${IMAGE_NAME}:latest
-    - docker logout
+    - echo ${CI_COMMIT_TIMESTAMP}
+    - echo ${COMMIT_TIME}
+    - $Env:TIME_2=$(git show -s --format=%ct $CI_COMMIT_SHA)
+    - WRITE-HOST $Env:TIME_2
+
+#img_docker_job:
+#  stage: build
+#  image: docker:24.0.4
+#  services:
+#    - docker:24.0.4-dind
+#  script:
+#    - docker build -t
+#      ${HUB_DOCKER_USERNAME}/${IMAGE_NAME}:${CI_COMMIT_SHORT_SHA} .
+#    - docker tag ${HUB_DOCKER_USERNAME}/${IMAGE_NAME}:${CI_COMMIT_SHORT_SHA}
+#      ${HUB_DOCKER_USERNAME}/${IMAGE_NAME}:latest
+#    - echo ${HUB_DOCKER_TOKEN} |
+#      docker login -u ${HUB_DOCKER_USERNAME} --password-stdin
+#    - docker push ${HUB_DOCKER_USERNAME}/${IMAGE_NAME}:${CI_COMMIT_SHORT_SHA}
+#    - docker push ${HUB_DOCKER_USERNAME}/${IMAGE_NAME}:latest
+#    - docker logout
