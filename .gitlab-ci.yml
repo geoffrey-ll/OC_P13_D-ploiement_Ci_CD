@@ -14,10 +14,10 @@ stages:
 
 #
 job:
-  image: python
+  image: alpine
   before_script:
     - export TIMESTAMP="${CI_COMMIT_TIMESTAMP}"
-    - VERSION_IMAGE = ${TIMESTAMP:0:9}_${TIMESTAMP:10:12}-${TIMESTAMP:14:15}-${TIMESTAMP:17:18}
+    - VERSION_IMAGE=${TIMESTAMP:0:9}_${TIMESTAMP:10:12}-${TIMESTAMP:14:15}-${TIMESTAMP:17:18}
   script:
     - echo ${VERSION_IMAGE}
 
