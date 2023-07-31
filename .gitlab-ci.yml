@@ -19,6 +19,9 @@ img_docker_job:
 #    - docker:23.0.4
     - docker:24.0.4-dind
   script:
-    - docker build -t img_yml:latest .
+    - docker build -t $HUB_DOCKER_USERNAME/$IMAGE_NAME:latest .
+    - docker tag $HUB_DOCKER_USERNAME/$IMAGE_NAME:latest $HUB_DOCKER_USERNAME/$IMAGE_NAME:latest
+    - docker login -u $HUB_DOCKER_USERNAME --password-stdin
+    - docker push $HUB_DOCKER_USERNAME/$IMAGE_NAME:latest
 #    - docker tag img_yml:v0.01 goclusername/img_yml:v0.01
 #    - docker push goclusername/img_yml:v0.01
