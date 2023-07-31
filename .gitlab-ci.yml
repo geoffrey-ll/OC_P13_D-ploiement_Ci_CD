@@ -16,7 +16,7 @@ stages:
 job:
   image: alpine
   variables:
-     IMAGE_VERSION: ${CI_COMMIT_TIMESTAMP:0:9}
+     IMAGE_VERSION: v${export ${CI_COMMIT_TIMESTAMP:0:9}}
      IMAGE_NAME_LONG: ${HUB_DOCKER_USERNAME}/${IMAGE_NAME}
   script:
     - echo ${IMAGE_VERSION}
