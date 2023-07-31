@@ -21,7 +21,7 @@ job:
   script:
     - echo ${CI_COMMIT_TIMESTAMP}
     - echo ${COMMIT_TIME}
-        - echo ${COMMIT_TIME_2}
+    - echo ${COMMIT_TIME_2}
 
 img_docker_job:
   stage: build
@@ -29,7 +29,7 @@ img_docker_job:
   services:
     - docker:24.0.4-dind
   before_script:
-    - VERSION_IMAGE=${CI_COMMIT_TIMESTAMP}
+    - export VERSION_IMAGE=${CI_COMMIT_TIMESTAMP}
   script:
     - docker build -t
       ${HUB_DOCKER_USERNAME}/${IMAGE_NAME}:${VERSION_IMAGE} .
