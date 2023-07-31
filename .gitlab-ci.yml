@@ -16,7 +16,7 @@ stages:
 job:
   image: alpine
   before_script:
-     - IMAGE_VERSION=v${CI_COMMIT_TIMESTAMP:0:9}
+     - IMAGE_VERSION=v${CI_COMMIT_TIMESTAMP:0:10}
      - IMAGE_NAME_LONG=${HUB_DOCKER_USERNAME}/${IMAGE_NAME}
   script:
     - echo ${IMAGE_VERSION}
