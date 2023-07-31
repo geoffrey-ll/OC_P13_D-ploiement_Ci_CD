@@ -18,15 +18,17 @@ job:
     - echo $CI_COMMIT_SHORT_SHA
     - echo ${CI_COMMIT_SHORT_SHA}
 
-#img_docker_job:
-#  stage: build
-#  image: docker:24.0.4
-#  services:
-#    - docker:24.0.4-dind
-#  script:
-#    - docker build -t $HUB_DOCKER_USERNAME/$IMAGE_NAME:latest .
-#    - docker tag $HUB_DOCKER_USERNAME/$IMAGE_NAME:latest $HUB_DOCKER_USERNAME/$IMAGE_NAME:latest
-#    - echo $HUB_DOCKER_TOKEN | docker login -u $HUB_DOCKER_USERNAME --password-stdin
-#    - docker push $HUB_DOCKER_USERNAME/$IMAGE_NAME:latest
-##    - docker tag img_yml:v0.01 goclusername/img_yml:v0.01
-##    - docker push goclusername/img_yml:v0.01
+img_docker_job:
+  stage: build
+  image: docker:24.0.4
+  services:
+    - docker:24.0.4-dind
+  script:
+    - docker build -t ${HUB_DOCKER_USERNAME}/${IMAGE_NAME}:${CI_COMMIT_SHORT_SHA} .
+    - docker tag ${HUB_DOCKER_USERNAME}/${IMAGE_NAME}:${CI_COMMIT_SHORT_SHA} ${HUB_DOCKER_USERNAME}/${IMAGE_NAME}:latest
+    - echo ${HUB_DOCKER_TOKEN} | docker login -u ${HUB_DOCKER_USERNAME} --password-stdin
+    - docker push ${HUB_DOCKER_USERNAME}/${IMAGE_NAME}:${CI_COMMIT_SHORT_SHA}
+    - docker push ${HUB_DOCKER_USERNAME}/${IMAGE_NAME}:latest
+    - docker logout
+#    - docker tag img_yml:v0.01 goclusername/img_yml:v0.01
+#    - docker push goclusername/img_yml:v0.01
