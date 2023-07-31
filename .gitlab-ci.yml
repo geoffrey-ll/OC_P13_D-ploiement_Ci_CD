@@ -2,25 +2,15 @@ stages:
   - test
   - build
   - deploy
-#
-#tests_job:
-#  stage: test
-#  image: python:3.10.6
-#  before_script:
-#    - pip install -r requirements.txt
-#  script:
-#    - python3 manage.py test
-#    - flake8 --config setup.cfg
 
-
-#job:
-#  image: alpine
-#  before_script:
-#     - IMAGE_VERSION=v${CI_COMMIT_TIMESTAMP:0:10}
-#     - IMAGE_NAME_LONG=${HUB_DOCKER_USERNAME}/${IMAGE_NAME}
-#  script:
-#    - echo ${IMAGE_VERSION}
-#    - echo ${IMAGE_NAME_LONG}
+tests_job:
+  stage: test
+  image: python:3.10.6
+  before_script:
+    - pip install -r requirements.txt
+  script:
+    - python3 manage.py test
+    - flake8 --config setup.cfg
 
 build_img_docker_job:
   stage: build
