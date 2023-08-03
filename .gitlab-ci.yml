@@ -50,5 +50,7 @@ deploy_job:
       docker login -u ${HUB_DOCKER_USERNAME} --password-stdin
     - docker pull goclusername/p13_open_county_lettings_images:latest
     - docker images | docker info
+  script:
+    - echo "voila"
   only:
     - master
