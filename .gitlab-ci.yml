@@ -54,3 +54,4 @@ deploy_job:
     - echo "voila"
   only:
     - master
+
