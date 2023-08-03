@@ -30,3 +30,25 @@ build_img_docker_job:
     - docker logout
   only:
     - master
+
+#docker pull goclusername/p13_open_county_lettings_images:latest
+
+#Deployment:
+#  docker:
+#    - image: cimg/base:stable
+#  steps:
+#    - checkout
+#    - run:
+#      name: "Deploy"
+#      command: curl -X GET (lien de l'hook récupéré sur Render)
+
+deploy_job:
+  stage: deploy
+#  image: ${IMAGE_NAME_LONG}:latest
+  before_script:
+    - echo ${HUB_DOCKER_TOKEN} |
+      docker login -u ${HUB_DOCKER_USERNAME} --password-stdin
+    - docker pull goclusername/p13_open_county_lettings_images:latest
+    - docker images | docker info
+  only:
+    - master
