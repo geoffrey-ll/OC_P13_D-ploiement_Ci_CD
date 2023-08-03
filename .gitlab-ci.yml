@@ -45,6 +45,7 @@ build_img_docker_job:
 deploy_job:
   stage: deploy
 #  image: ${IMAGE_NAME_LONG}:latest
+  image: docker:24.0.4
   before_script:
     - echo ${HUB_DOCKER_TOKEN} |
       docker login -u ${HUB_DOCKER_USERNAME} --password-stdin
