@@ -46,8 +46,8 @@ deploy_job:
   stage: deploy
 #  image: ${IMAGE_NAME_LONG}:latest
   image: docker:24.0.4
-  services:
-    - docker:24.0.4-dind
+#  services:
+#    - docker:24.0.4-dind
   before_script:
 #    - echo ${HUB_DOCKER_TOKEN} |
 #      docker login -u ${HUB_DOCKER_USERNAME} --password-stdin
