@@ -53,7 +53,7 @@ deploy_job:
 #    - docker images | docker info
   script:
     - gem install dpl
-#    - dpl render
+    - dpl render
   environment: production
 #  only:
 #    - master
