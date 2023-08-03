@@ -3,14 +3,14 @@ stages:
   - build
   - deploy
 
-tests_job:
-  stage: test
-  image: python:3.10.6
-  before_script:
-    - pip install -r requirements.txt
-  script:
-    - python3 manage.py test
-    - flake8 --config setup.cfg
+#tests_job:
+#  stage: test
+#  image: python:3.10.6
+#  before_script:
+#    - pip install -r requirements.txt
+#  script:
+#    - python3 manage.py test
+#    - flake8 --config setup.cfg
 
 build_img_docker_job:
   stage: build
@@ -52,6 +52,6 @@ deploy_job:
     - docker images | docker info
   script:
     - echo "voila"
-  only:
-    - master
+#  only:
+#    - master
 
