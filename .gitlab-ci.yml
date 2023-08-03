@@ -48,13 +48,13 @@ deploy_job:
   image: docker:24.0.4
   services:
     - docker:24.0.4-dind
-  before_script:
-#    - echo ${HUB_DOCKER_TOKEN} |
-#      docker login -u ${HUB_DOCKER_USERNAME} --password-stdin
-    - docker pull goclusername/p13_open_county_lettings_images:latest
-    - docker images | docker info
+#  before_script:
+#    - docker pull goclusername/p13_open_county_lettings_images:latest
+#    - docker images | docker info
   script:
-    - echo "voila"
+    - gem install dpl
+#    - dpl render
+  environment: production
 #  only:
 #    - master
 
