@@ -30,3 +30,17 @@ build_img_docker_job:
     - docker logout
   only:
     - master
+
+deploy_to_render:
+  stage: deploy
+  image: python:3.10
+  variables:
+    # Replace <RENDER_PRIVATE_KEY> with your actual Render private key
+    RENDER_PRIVATE_KEY: "rnd_0iWsxmnOZvGWwJl6b8PFGOcaPobm"
+  script:
+    - pip install -r requirements.txt
+    - python manage.py collectstatic --noinput
+    - echo "$RENDER_PRIVATE_KEY" > ~/.render_token
+    - curl -H "Authorization: Bearer $(cat ~/.render_token)" -d "{}" -X POST "https://render.com/apps/Open_county_lettings/deploy"
+  only:
+    - develop
