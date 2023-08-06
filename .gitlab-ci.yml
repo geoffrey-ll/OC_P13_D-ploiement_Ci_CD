@@ -42,19 +42,25 @@ build_img_docker_job:
 #      name: "Deploy"
 #      command: curl -X GET (lien de l'hook récupéré sur Render)
 
+
 deploy_job:
-  stage: deploy
-#  image: ${IMAGE_NAME_LONG}:latest
-  image: docker:24.0.4
-  services:
-    - docker:24.0.4-dind
-#  before_script:
-#    - docker pull goclusername/p13_open_county_lettings_images:latest
-#    - docker images | docker info
+  image: cimg/base:stable
   script:
-    - gem install dpl
-    - dpl render
-  environment: production
+    - docker images
+#deploy_job:
+#  stage: deploy
+##  image: ${IMAGE_NAME_LONG}:latest
+#  image: docker:24.0.4
+#  services:
+#    - docker:24.0.4-dind
+##  before_script:
+##    - docker pull goclusername/p13_open_county_lettings_images:latest
+##    - docker images | docker info
+#  script:
+#    - gem install dpl
+#    - dpl render
+#  environment: production
 #  only:
 #    - master
 
+# gunicorn
