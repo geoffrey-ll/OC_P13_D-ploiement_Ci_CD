@@ -8,7 +8,7 @@ ENV PORT=8000
 
 RUN pip install -r requirements.txt
 
-RUN python manage.py collectstatic --noinput
+RUN python manage.py collectstatic --no-input
 # | python manage.py migrate
 
 EXPOSE 8000
