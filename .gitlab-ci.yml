@@ -28,8 +28,8 @@ build_img_docker_job:
     - docker push ${IMAGE_NAME_LONG}:${IMAGE_VERSION}
     - docker push ${IMAGE_NAME_LONG}:latest
     - docker logout
-#  only:
-#    - master
+  only:
+    - master
 
 #docker pull goclusername/p13_open_county_lettings_images:latest
 
@@ -52,7 +52,7 @@ deploy_job:
     - docker:24.0.4-dind
   before_script:
     - docker pull goclusername/p13_open_county_lettings_images:latest
-    - docker images | docker info
+    - docker images
   script:
     - curl -X GET ${TO_DEPLOY}
 #    - gem install dpl
