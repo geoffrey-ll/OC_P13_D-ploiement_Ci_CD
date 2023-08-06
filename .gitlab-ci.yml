@@ -37,7 +37,7 @@ deploy_to_render:
   script:
     - pip install -r requirements.txt
     - python manage.py collectstatic --noinput
-    - echo ${RENDER_PRIVATE_KEY} > ~/.render_token
+    - echo ${RENDER_API_KEY} > ~/.render_token
     - apt-get update -qy && apt-get install -y curl
     - chmod +x deploy_to_render.sh
     - ./deploy_to_render.sh
