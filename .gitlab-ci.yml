@@ -34,14 +34,10 @@ stages:
 deploy_to_render:
   stage: deploy
   image: python:3.10
-  variables:
-    # Replace <RENDER_PRIVATE_KEY> with your actual Render private key
-    RENDER_PRIVATE_KEY: "rnd_0iWsxmnOZvGWwJl6b8PFGOcaPobm"
-#    DEPLOY_CURL_COMMAND: 'curl -H "Authorization: Bearer $(cat ~/.render_token)" -d "{}" -X POST "https://render.com/apps/open_county_lettings/deploy"'
   script:
     - pip install -r requirements.txt
     - python manage.py collectstatic --noinput
-    - echo "$RENDER_PRIVATE_KEY" > ~/.render_token
+    - echo ${RENDER_PRIVATE_KEY} > ~/.render_token
     - apt-get update -qy && apt-get install -y curl
     - chmod +x deploy_to_render.sh
     - ./deploy_to_render.sh

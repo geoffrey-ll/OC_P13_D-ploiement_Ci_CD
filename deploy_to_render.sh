@@ -1,14 +1,10 @@
-
-
-
+# Requête curl pour le déploiement CI
 
 curl --request POST \
-     --url "https://api.render.com/v1/services/srv-cj7svp4l975s73e6i6v0/deploys" \
+     --url "https://api.render.com/v1/services/${RENDER_SERVICE_ID}/deploys" \
      --header "Accept: application/json" \
-     --header "Authorization: Bearer rnd_0iWsxmnOZvGWwJl6b8PFGOcaPobm" \
+     --header "Authorization: Bearer ${RENDER_PRIVATE_KEY}" \
      --header "Content-Type: application/json" \
      --write-out '%{http_code}' \
      --silent \
      --output /dev/null
-
-
