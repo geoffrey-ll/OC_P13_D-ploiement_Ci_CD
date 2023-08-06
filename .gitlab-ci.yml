@@ -47,6 +47,6 @@ deploy_to_render:
     - 'eval "$DEPLOY_CURL_COMMAND"'
   environment:
     name: render
-    url: "https://<YOUR_RENDER_APP_NAME>.onrender.com"
+    url: "https://Open_county_lettings.onrender.com"
   only:
     - develop
