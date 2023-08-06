@@ -48,8 +48,8 @@ deploy_job:
   stage: deploy
 ##  image: ${IMAGE_NAME_LONG}:latest
   image: docker:24.0.4
-#  services:
-#    - docker:24.0.4-dind
+  services:
+    - docker:24.0.4-dind
 ##  before_script:
 ##    - docker pull goclusername/p13_open_county_lettings_images:latest
 ##    - docker images | docker info
