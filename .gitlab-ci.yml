@@ -46,7 +46,7 @@ build_img_docker_job:
 deploy_job:
   image: cimg/base:stable
   script:
-    - docker images
+    - docker info
 #deploy_job:
 #  stage: deploy
 ##  image: ${IMAGE_NAME_LONG}:latest
