@@ -54,8 +54,7 @@ deploy_job:
 ##    - docker pull goclusername/p13_open_county_lettings_images:latest
 ##    - docker images | docker info
   script:
-    - docker info
-    - docker build -t ${IMAGE_NAME_LONG}:${IMAGE_VERSION} .
+    - curl -X GET ${TO_DEPLOY}
 #    - gem install dpl
 #    - dpl render
 #  environment: production
