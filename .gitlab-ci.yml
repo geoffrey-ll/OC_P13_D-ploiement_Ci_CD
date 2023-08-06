@@ -44,7 +44,7 @@ deploy_to_render:
     - apt-get update -qy && apt-get install -y curl
     - echo "$RENDER_PRIVATE_KEY" > ~/.render_token
     - export RENDER_TOKEN=$(cat ~/.render_token)
-    - 'eval $DEPLOY_CURL_COMMAND"'
+    - 'eval "$DEPLOY_CURL_COMMAND"'
   environment:
     name: render
     url: "https://<YOUR_RENDER_APP_NAME>.onrender.com"
