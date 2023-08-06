@@ -37,10 +37,18 @@ deploy_to_render:
   variables:
     # Replace <RENDER_PRIVATE_KEY> with your actual Render private key
     RENDER_PRIVATE_KEY: "rnd_0iWsxmnOZvGWwJl6b8PFGOcaPobm"
+    DEPLOY_CURL_COMMAND: 'curl -X POST --header "PRIVATE-TOKEN: $CI_JOB_TOKEN" "https://gitlab.com/api/v4/projects/$CI_PROJECT_ID/deployments"'
   script:
     - pip install -r requirements.txt
     - python manage.py collectstatic --noinput
+    - apt-get update -qy && apt-get install -y curl
     - echo "$RENDER_PRIVATE_KEY" > ~/.render_token
-    - curl -H "Authorization: Bearer $(cat ~/.render_token)" -d "{}" -X POST "https://render.com/apps/Open_county_lettings/deploy"
+    - export RENDER_TOKEN=$(cat ~/.render_token)
+    - 'eval $DEPLOY_CURL_COMMAND"'
+
+  environment:
+    name: render
+    url: "https://<YOUR_RENDER_APP_NAME>.onrender.com"
+  
   only:
     - develop
