@@ -37,22 +37,22 @@ deploy_to_render:
 #  variables:
 #    RENDER_SERICE_ID: ${RENDER_SERVICE_ID}
 #    RENDER_API_KEY: ${RENDER_API_KEY}
-  before_script:
+  script:
     - pip install -r requirements.txt
     - python manage.py collectstatic --noinput
     - echo ${RENDER_API_KEY} > ~/.render_token
     - apt-get update -qy && apt-get install -y curl
-#    - chmod +x deploy_to_render.sh
-#    - ./deploy_to_render.sh
-  script:
-    - |
-      curl --request POST \
-        --url 'https://api.render.com/v1/services/'${RENDER_SERVICE_ID}'/deploys' \
-        --header "Accept: application/json" \ 
-        --header "Authorization: Bearer '%{RENDER_API_KEY}'" \
-        --header "Content-type: application/json" \
-        --write-out "HTTP response: '%{http_code}'\n\n" \
-        --silent \
-        --output /dev/null
+    - chmod +x deploy_to_render.sh
+    - ./deploy_to_render.sh
+#  script:
+#    - |
+#      curl --request POST \
+#        --url 'https://api.render.com/v1/services/'${RENDER_SERVICE_ID}'/deploys' \
+#        --header "Accept: application/json" \
+#        --header "Authorization: Bearer '%{RENDER_API_KEY}'" \
+#        --header "Content-type: application/json" \
+#        --write-out "HTTP response: '%{http_code}'\n\n" \
+#        --silent \
+#        --output /dev/null
   only:
     - develop
