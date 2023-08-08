@@ -46,7 +46,7 @@ deploy_to_render_job:
         --header "Accept: application/json" \
         --header "Authorization: Bearer "${RENDER_API_KEY} \
         --header "Content-type: application/json" \
-        --write-out "HTTP response: %{http_code}\n\n %{url}" \
+        --write-out "%{http_code}" \
         --silent \
         --output /dev/null
   only:
