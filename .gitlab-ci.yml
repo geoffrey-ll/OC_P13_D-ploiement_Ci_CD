@@ -31,35 +31,17 @@ stages:
 #  only:
 #    - master
 
-#deploy_to_render:
-#  stage: deploy
-#  image: python:3.10
-#  script:
-#    - pip install -r requirements.txt
-#    - python manage.py collectstatic --noinput
-#    - echo ${RENDER_API_KEY} > ~/.render_token
-#    - apt-get update -qy && apt-get install -y curl
-#    - chmod +x deploy_to_render.sh
-#    - ./deploy_to_render.sh
-#  only:
-#    - develop
-
 deploy_to_render:
   stage: deploy
   image: python:3.10
-  before_script:
+  variables:
+
+  script:
     - pip install -r requirements.txt
     - python manage.py collectstatic --noinput
     - echo ${RENDER_API_KEY} > ~/.render_token
     - apt-get update -qy && apt-get install -y curl
-  script:
-    - curl --request POST \
-           --url "https://api.render.com/v1/services/${RENDER_SERVICE_ID}/deploys" \
-           --header "Accept: application/json" \
-           -- header "Authorization: Bearer '${RENDER_API_KEY}'" \
-           --header "Content-Type: application/json" \
-           --write-out '%{http_code}' \
-           --silent \
-           --output /dev/null
+    - chmod +x deploy_to_render.sh
+    - ./deploy_to_render.sh
   only:
     - develop
