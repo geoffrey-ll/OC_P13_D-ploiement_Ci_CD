@@ -35,7 +35,8 @@ deploy_to_render:
   stage: deploy
   image: python:3.10
   variables:
-
+    RENDER_SERICE_ID: ${RENDER_SERVICE_ID}
+    RENDER_API_KEY: ${RENDER_API_KEY}
   script:
     - pip install -r requirements.txt
     - python manage.py collectstatic --noinput
