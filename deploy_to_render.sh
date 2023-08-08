@@ -1,9 +1,9 @@
 # Requête curl pour le déploiement CI
 
 curl --request POST \
-     --url '${RENDER_SERVICE_ID}  %{RENDER_SERVICE_ID}  "${RENDER_SERVICE_ID}$  "%{RENDER_SERVICE_ID}"  '${RENDER_SERVICE_ID}'  '%\{RENDER_SERVICE_ID\}'  '%{RENDER_SERVICE_ID}' ' \
+     --url 'https://api.render.com/v1/services/'${RENDER_SERVICE_ID}'' \
      --header "Accept: application/json" \
-     --header 'Authorization: Bearer %{RENDER_API_KEY}' \
+     --header 'Authorization: Bearer '${RENDER_API_KEY}'' \
      --header "Content-Type: application/json" \
      --write-out '%{http_code}\n\n %{url}' \
      --silent \
@@ -17,3 +17,4 @@ curl --request POST \
 #    --header "Private-Token: ${CI_PRIVATE_TOKEN}" \
 #    --request POST \
 #    "${CI_API_V4_URL}/projects/${CI_PROJECT_ID}/releases"
+
