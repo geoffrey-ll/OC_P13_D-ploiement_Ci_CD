@@ -15,8 +15,8 @@ SECRET_KEY = config("SECRET_KEY")
 # SECURITY WARNING: don't run with debug turned on in production!
 DEBUG = config("DEBUG", cast=bool)
 
-ALLOWED_HOSTS = ["0.0.0.0",
-                 "https://open-county-lettings.onrender.com/"]
+if DEBUG == True:
+    ALLOWED_HOSTS = ["0.0.0.0", "127.0.0.1"]
 
 DJANGO_APPS = [
     'django.contrib.admin',
