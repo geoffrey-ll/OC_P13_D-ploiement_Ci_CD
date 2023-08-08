@@ -11,7 +11,7 @@ tests_job:
   script:
     - python3 manage.py test
     - flake8 --config setup.cfg
-#
+
 build_img_docker_job:
   stage: build
   image: docker:24.0.4
@@ -31,9 +31,9 @@ build_img_docker_job:
   only:
     - master
 
-deploy_to_render:
+deploy_to_render_job:
   stage: deploy
-  image: python:3.10
+  image: python:3.10.6
   before_script:
     - pip install -r requirements.txt
     - python manage.py collectstatic --noinput
