@@ -16,7 +16,7 @@ SECRET_KEY = config("SECRET_KEY")
 DEBUG = config("DEBUG", cast=bool)
 
 ALLOWED_HOSTS = ["0.0.0.0",
-                 f"https://open-county-lettings.onrender.com/"]
+                 "https://open-county-lettings.onrender.com/"]
 
 DJANGO_APPS = [
     'django.contrib.admin',
