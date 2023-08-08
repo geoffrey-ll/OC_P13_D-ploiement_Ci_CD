@@ -10,7 +10,7 @@ curl --request POST \
      --output /dev/null
 
 
-- |
+#- |
 #  curl --fail --output "/dev/null" --silent --show-error --write-out "HTTP response: ${http_code}\n\n" \
 #    --data "{\"tag_name\": \"${CI_COMMIT_TAG}\", \"name\": \"${CI_PROJECT_NAME} ${CI_COMMIT_TAG}\", \"description\": \"${CI_COMMIT_TAG_MESSAGE:-No release notes.}\"}" \
 #    --header "Content-Type: application/json" \
