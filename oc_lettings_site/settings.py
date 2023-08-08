@@ -15,7 +15,8 @@ SECRET_KEY = config("SECRET_KEY")
 # SECURITY WARNING: don't run with debug turned on in production!
 DEBUG = config("DEBUG", cast=bool)
 
-ALLOWED_HOSTS = ["0.0.0.0", "*"]
+ALLOWED_HOSTS = ["0.0.0.0",
+                 f"https://api.render.com/v1/services/{config('RENDER_SERVICE_ID')}/deploys"]
 
 DJANGO_APPS = [
     'django.contrib.admin',
