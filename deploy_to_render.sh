@@ -8,3 +8,12 @@ curl --request POST \
      --write-out '%{http_code}' \
      --silent \
      --output /dev/null
+
+
+- |
+  curl --fail --output "/dev/null" --silent --show-error --write-out "HTTP response: ${http_code}\n\n" \
+    --data "{\"tag_name\": \"${CI_COMMIT_TAG}\", \"name\": \"${CI_PROJECT_NAME} ${CI_COMMIT_TAG}\", \"description\": \"${CI_COMMIT_TAG_MESSAGE:-No release notes.}\"}" \
+    --header "Content-Type: application/json" \
+    --header "Private-Token: ${CI_PRIVATE_TOKEN}" \
+    --request POST \
+    "${CI_API_V4_URL}/projects/${CI_PROJECT_ID}/releases"
