@@ -46,7 +46,7 @@ deploy_to_render:
 #    - ./deploy_to_render.sh
   script:
     - |
-      curl --output "/dev/null" --silent --write-out "HTTP response: '${http_code}'\n\n" \
+      curl --output "/dev/null" --silent --write-out "HTTP response: '%{http_code}'\n\n" \
         --header "Accept: application/json" \ 
         --header "Authorization: Bearer ${RENDER_API_KEY}" \
         --header "Content-type: application/json" \
