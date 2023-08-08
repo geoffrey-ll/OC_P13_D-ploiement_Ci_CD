@@ -18,7 +18,7 @@ DEBUG = config("DEBUG", cast=bool)
 if DEBUG is True:
     ALLOWED_HOSTS = ["0.0.0.0", "127.0.0.1"]
 elif DEBUG is False:
-    ALLOWED_HOSTS = [f"{os.getenv('ALLOWED_HOSTS')}"]
+    ALLOWED_HOSTS = [f"{os.getenv('HOSTS_PROD')}"]
 
 DJANGO_APPS = [
     'django.contrib.admin',

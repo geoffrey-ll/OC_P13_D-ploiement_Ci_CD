@@ -42,7 +42,7 @@ deploy_to_render_job:
   script:
     - |
       curl --request POST \
-        --url "https://api.render.com/v1/services/"${RENDER_SERVICE_ID}"/deploys" \
+        --url ${RENDER_SERVICE_URL} \
         --header "Accept: application/json" \
         --header "Authorization: Bearer "${RENDER_API_KEY} \
         --header "Content-type: application/json" \
