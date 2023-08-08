@@ -46,13 +46,13 @@ deploy_to_render:
 #    - ./deploy_to_render.sh
   script:
     - |
-      curl --header "Accept: application/json" \ 
+      curl --request POST \
+        "https://api.render.com/v1/services/${RENDER_SERVICE_ID}/deploys"
+        --header "Accept: application/json" \ 
         --header "Authorization: Bearer ${RENDER_API_KEY" \
         --header "Content-type: application/json" \
         --write-out '%{http_code}' \
         --silent \
         --output /dev/null \
-        --request POST \
-        -- url "https://api.render.com/v1/services/${RENDER_SERVICE_ID}/deploys"
   only:
     - develop
