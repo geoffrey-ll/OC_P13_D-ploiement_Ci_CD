@@ -32,13 +32,15 @@ class Migration(migrations.Migration):
     dependencies = [
         ('lettings', '0001_initial'),
     ]
-
     if global_apps.is_installed("oc_lettings_site"):
         dependencies.append(("oc_lettings_site", "0001_initial"))
 
     operations = [
         migrations.RunPython(move_data_from_old_lettings_to_new_lettings,
                              migrations.RunPython.noop),
-        migrations.RunSQL([("DROP TABLE oc_lettings_site_address;"),
-                           ("DROP TABLE oc_lettings_site_letting;")])
     ]
+    if global_apps.is_installed("oc_lettings_site"):
+        operations.append(
+            migrations.RunSQL([("DROP TABLE oc_lettings_site_address;"),
+                               ("DROP TABLE oc_lettings_site_letting;")]),
+        )

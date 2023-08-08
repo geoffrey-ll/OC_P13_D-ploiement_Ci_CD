@@ -1,8 +1,8 @@
 **/__pycache__
 venv
 notes_for_commit.txt
-*/migrations/*.py
-oc-lettings-site.sqlite3
+#*/migrations/*.py
+#oc-lettings-site.sqlite3
 
 # Created by https://www.toptal.com/developers/gitignore/api/python,pycharm,visualstudio,windows,linux,macos
 # Edit at https://www.toptal.com/developers/gitignore?templates=python,pycharm,visualstudio,windows,linux,macos
