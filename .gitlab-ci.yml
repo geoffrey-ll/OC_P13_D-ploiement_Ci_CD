@@ -29,7 +29,7 @@ build_img_docker_job:
     - docker push ${IMAGE_NAME_LONG}:latest
     - docker logout
   only:
-    - master
+    - develop
 
 deploy_to_render_job:
   stage: deploy
