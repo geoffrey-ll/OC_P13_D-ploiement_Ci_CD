@@ -16,7 +16,7 @@ SECRET_KEY = config("SECRET_KEY")
 DEBUG = config("DEBUG", cast=bool)
 
 ALLOWED_HOSTS = ["0.0.0.0",
-                 f"https://api.render.com/v1/services/{config('RENDER_SERVICE_ID')}/deploys"]
+                 f"https://open-county-lettings.onrender.com/"]
 
 DJANGO_APPS = [
     'django.contrib.admin',
