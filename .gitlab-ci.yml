@@ -45,14 +45,13 @@ deploy_to_render:
 #    - chmod +x deploy_to_render.sh
 #    - ./deploy_to_render.sh
   script:
-    - |
-      curl --request POST \
-        --url "https://api.render.com/v1/services/"${RENDER_SERVICE_ID}"/deploys" \
-        --header "Accept: application/json" \
-        --header "Authorization: Bearer "${RENDER_API_KEY} \
-        --header "Content-type: application/json" \
-        --write-out "HTTP response: %{http_code}\n\n %{url}" \
-        --silent \
-        --output /dev/null
+    - curl --request POST \
+    --url "https://api.render.com/v1/services/"${RENDER_SERVICE_ID}"/deploys" \
+    --header "Accept: application/json" \
+    --header "Authorization: Bearer "${RENDER_API_KEY} \
+    --header "Content-type: application/json" \
+    --write-out "HTTP response: %{http_code}\n\n %{url}" \
+    --silent \
+    --output /dev/null
   only:
     - develop
