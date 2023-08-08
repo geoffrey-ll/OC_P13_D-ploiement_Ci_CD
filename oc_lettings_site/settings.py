@@ -18,7 +18,7 @@ DEBUG = config("DEBUG", cast=bool)
 if DEBUG is True:
     ALLOWED_HOSTS = ["0.0.0.0", "127.0.0.1"]
 elif DEBUG is False:
-    ALLOWED_HOSTS = [f"{config('RENDER_URL_SITE')}"]
+    ALLOWED_HOSTS = []
 
 DJANGO_APPS = [
     'django.contrib.admin',
