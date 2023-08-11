@@ -27,17 +27,17 @@ NO_VAR = "Un petit test"
 # except:
 #   DEBUG = config("DEBUG", cast=bool)
 
-if DEBUG is True:
-    ALLOWED_HOSTS = ["0.0.0.0", "127.0.0.1"]
-elif DEBUG is False:
-    ALLOWED_HOSTS = [f"{os.getenv('HOSTS_PROD')}"]
-    sentry_sdk.init(
-        dsn=f"{os.getenv('SENTRY_DNS')}",
-        integrations=[DjangoIntegration()],
-        send_default_pii=True,
-        traces_sample_rate=1.0,
-        profiles_sample_rate=1.0,
-    )
+# if DEBUG is True:
+#     ALLOWED_HOSTS = ["0.0.0.0", "127.0.0.1"]
+# elif DEBUG is False:
+#     ALLOWED_HOSTS = [f"{os.getenv('HOSTS_PROD')}"]
+#     sentry_sdk.init(
+#         dsn=f"{os.getenv('SENTRY_DNS')}",
+#         integrations=[DjangoIntegration()],
+#         send_default_pii=True,
+#         traces_sample_rate=1.0,
+#         profiles_sample_rate=1.0,
+#     )
 
 DJANGO_APPS = [
     'django.contrib.admin',
