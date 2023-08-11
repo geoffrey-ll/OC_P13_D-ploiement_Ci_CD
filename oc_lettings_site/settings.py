@@ -16,7 +16,8 @@ SECRET_KEY = config("SECRET_KEY")
 
 # SECURITY WARNING: don't run with debug turned on in production!
 print(f"GET={os.getenv('DEBUG')}")
-DEBUG = os.getenv('DEBUG', default=False)
+# DEBUG = os.getenv('DEBUG', default=False)
+DEBUG = config("DEBUG")
 print(f"DEBUG={DEBUG}\n"
       f"type={type(DEBUG)}")
 if DEBUG is False:
