@@ -15,12 +15,7 @@ BASE_DIR = os.path.dirname(os.path.dirname(os.path.abspath(__file__)))
 SECRET_KEY = config("SECRET_KEY")
 
 # SECURITY WARNING: don't run with debug turned on in production!
-print(f"GET={os.getenv('DEBUG')}\n"
-      f"type={type(os.getenv('DEBUG'))}")
-# DEBUG = os.getenv('DEBUG', default=False)
 DEBUG = config("DEBUG")
-print(f"DEBUG={DEBUG}\n"
-      f"type={type(DEBUG)}")
 if eval(DEBUG) is False:
     ALLOWED_HOSTS = [f"{os.getenv('HOSTS_PROD')}"]
     sentry_sdk.init(
