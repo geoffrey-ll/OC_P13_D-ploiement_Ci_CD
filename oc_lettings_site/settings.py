@@ -15,12 +15,13 @@ BASE_DIR = os.path.dirname(os.path.dirname(os.path.abspath(__file__)))
 SECRET_KEY = config("SECRET_KEY")
 
 # SECURITY WARNING: don't run with debug turned on in production!
-print(f"GET={os.getenv('DEBUG')}")
+print(f"GET={os.getenv('DEBUG')}\n"
+      f"type={type(os.getenv('DEBUG'))}")
 # DEBUG = os.getenv('DEBUG', default=False)
 DEBUG = config("DEBUG")
 print(f"DEBUG={DEBUG}\n"
       f"type={type(DEBUG)}")
-if DEBUG is False:
+if eval(DEBUG) is False:
     ALLOWED_HOSTS = [f"{os.getenv('HOSTS_PROD')}"]
     sentry_sdk.init(
         dsn=f"{os.getenv('SENTRY_DNS')}",
@@ -29,7 +30,7 @@ if DEBUG is False:
         traces_sample_rate=1.0,
         profiles_sample_rate=1.0,
     )
-if DEBUG is True:
+if eval(DEBUG) is True:
     ALLOWED_HOSTS = ["0.0.0.0", "127.0.0.1"]
 
 DJANGO_APPS = [
