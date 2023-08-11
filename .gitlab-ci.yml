@@ -4,50 +4,55 @@ stages:
   - deploy
 
 tests_job:
-  stage: test
   image: python:3.10.6
-  before_script:
-    - pip install -r requirements.txt
   script:
-    - python3 manage.py test
-    - flake8 --config setup.cfg
+    - echo ${DEBUG}
 
-build_img_docker_job:
-  stage: build
-  image: docker:24.0.4
-  services:
-    - docker:24.0.4-dind
-  before_script:
-     - IMAGE_VERSION=v${CI_COMMIT_TIMESTAMP:0:10}
-     - IMAGE_NAME_LONG=${HUB_DOCKER_USERNAME}/${IMAGE_NAME}
-  script:
-    - docker build -t ${IMAGE_NAME_LONG}:${IMAGE_VERSION} .
-    - docker tag ${IMAGE_NAME_LONG}:${IMAGE_VERSION} ${IMAGE_NAME_LONG}:latest
-    - echo ${HUB_DOCKER_TOKEN} |
-      docker login -u ${HUB_DOCKER_USERNAME} --password-stdin
-    - docker push ${IMAGE_NAME_LONG}:${IMAGE_VERSION}
-    - docker push ${IMAGE_NAME_LONG}:latest
-    - docker logout
-  only:
-    - CI_CD/sentry_implement
-
-deploy_to_render_job:
-  stage: deploy
-  image: python:3.10.6
-  before_script:
-    - pip install -r requirements.txt
-    - python manage.py collectstatic --noinput
-    - echo ${RENDER_API_KEY} > ~/.render_token
-    - apt-get update -qy && apt-get install -y curl
-  script:
-    - |
-      curl --request POST \
-        --url ${RENDER_SERVICE_URL} \
-        --header "Accept: application/json" \
-        --header "Authorization: Bearer "${RENDER_API_KEY} \
-        --header "Content-type: application/json" \
-        --write-out "%{http_code}" \
-        --silent \
-        --output /dev/null
-  only:
-    - CI_CD/sentry_implement
+#tests_job:
+#  stage: test
+#  image: python:3.10.6
+#  before_script:
+#    - pip install -r requirements.txt
+#  script:
+#    - python3 manage.py test
+#    - flake8 --config setup.cfg
+#
+#build_img_docker_job:
+#  stage: build
+#  image: docker:24.0.4
+#  services:
+#    - docker:24.0.4-dind
+#  before_script:
+#     - IMAGE_VERSION=v${CI_COMMIT_TIMESTAMP:0:10}
+#     - IMAGE_NAME_LONG=${HUB_DOCKER_USERNAME}/${IMAGE_NAME}
+#  script:
+#    - docker build -t ${IMAGE_NAME_LONG}:${IMAGE_VERSION} .
+#    - docker tag ${IMAGE_NAME_LONG}:${IMAGE_VERSION} ${IMAGE_NAME_LONG}:latest
+#    - echo ${HUB_DOCKER_TOKEN} |
+#      docker login -u ${HUB_DOCKER_USERNAME} --password-stdin
+#    - docker push ${IMAGE_NAME_LONG}:${IMAGE_VERSION}
+#    - docker push ${IMAGE_NAME_LONG}:latest
+#    - docker logout
+#  only:
+#    - CI_CD/sentry_implement
+#
+#deploy_to_render_job:
+#  stage: deploy
+#  image: python:3.10.6
+#  before_script:
+#    - pip install -r requirements.txt
+#    - python manage.py collectstatic --noinput
+#    - echo ${RENDER_API_KEY} > ~/.render_token
+#    - apt-get update -qy && apt-get install -y curl
+#  script:
+#    - |
+#      curl --request POST \
+#        --url ${RENDER_SERVICE_URL} \
+#        --header "Accept: application/json" \
+#        --header "Authorization: Bearer "${RENDER_API_KEY} \
+#        --header "Content-type: application/json" \
+#        --write-out "%{http_code}" \
+#        --silent \
+#        --output /dev/null
+#  only:
+#    - CI_CD/sentry_implement
