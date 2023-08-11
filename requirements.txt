@@ -1,5 +1,6 @@
 asgiref==3.7.2
 Brotli==1.0.9
+certifi==2023.7.22
 Django==4.2.2
 entrypoints==0.4
 exceptiongroup==1.1.1
@@ -15,7 +16,9 @@ pytest==7.4.0
 pytest-django==4.5.2
 python-decouple==3.8
 pytz==2023.3
+sentry-sdk==1.29.2
 sqlparse==0.4.4
 tomli==2.0.1
 typing_extensions==4.6.3
+urllib3==2.0.4
 whitenoise==6.5.0

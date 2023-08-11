@@ -29,7 +29,7 @@ build_img_docker_job:
     - docker push ${IMAGE_NAME_LONG}:latest
     - docker logout
   only:
-    - master
+    - CI_CD/sentry_implement
 
 deploy_to_render_job:
   stage: deploy
@@ -50,4 +50,4 @@ deploy_to_render_job:
         --silent \
         --output /dev/null
   only:
-    - master
+    - CI_CD/sentry_implement

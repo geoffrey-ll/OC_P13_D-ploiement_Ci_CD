@@ -1,10 +1,12 @@
 import os
 
 from decouple import config
+import sentry_sdk
+from sentry_sdk.integrations.django import DjangoIntegration
+
 
 # Build paths inside the project like this: os.path.join(BASE_DIR, ...)
 BASE_DIR = os.path.dirname(os.path.dirname(os.path.abspath(__file__)))
-
 
 # Quick-start development settings - unsuitable for production
 # See https://docs.djangoproject.com/en/3.0/howto/deployment/checklist/
@@ -19,6 +21,13 @@ if DEBUG is True:
     ALLOWED_HOSTS = ["0.0.0.0", "127.0.0.1"]
 elif DEBUG is False:
     ALLOWED_HOSTS = [f"{os.getenv('HOSTS_PROD')}"]
+    sentry_sdk.init(
+        dsn=f"{os.getenv('SENTRY_DNS')}",
+        integrations=[DjangoIntegration()],
+        send_default_pii=True,
+        traces_sample_rate=1.0,
+        profiles_sample_rate=1.0,
+    )
 
 DJANGO_APPS = [
     'django.contrib.admin',
