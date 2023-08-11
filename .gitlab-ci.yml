@@ -50,4 +50,4 @@ deploy_to_render_job:
         --silent \
         --output /dev/null
   only:
-    - master
+    - develop
