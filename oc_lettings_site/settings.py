@@ -17,7 +17,7 @@ SECRET_KEY = config("SECRET_KEY")
 # SECURITY WARNING: don't run with debug turned on in production!
 DEBUG = config("DEBUG", cast=bool)
 
-TESTTTTE="Whoooahh"
+NO_VAR = "Un petit test"
 
 # DEBUG = os.getenv(f"{os.getenv('DEBUG', default='False')}")
 # if DEBUG is T
