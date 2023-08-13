@@ -30,7 +30,7 @@ build_img_docker_job:
     - echo ${IMAGE_NAME_LONG}
     - echo ${IMAGE_NAME_LONG}:${IMAGE_VERSION}
     - docker images
-    - echo ${HUB_DOCKER_TOKEN} |
+    - echo ${HUB_DOCKER_PASSWORD} |
       docker login -u ${HUB_DOCKER_USERNAME} --password-stdin
 ##    - docker push -a $IMAGE_NAME_LONG
     - docker push ${IMAGE_NAME_LONG}:latest
