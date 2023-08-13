@@ -22,7 +22,7 @@ build_img_docker_job:
      - IMAGE_NAME_LONG=${HUB_DOCKER_USERNAME}/${IMAGE_NAME}
   script:
     - docker build -t ${IMAGE_NAME_LONG}:${IMAGE_VERSION} .
-#    - docker tag ${IMAGE_NAME_LONG}:${IMAGE_VERSION} ${IMAGE_NAME_LONG}:latest
+    - docker tag ${IMAGE_NAME_LONG}:${IMAGE_VERSION} ${IMAGE_NAME_LONG}:latest
     - echo ${IMAGE_VERSION}
     - echo ${IMAGE_NAME_LONG}
     - echo ${IMAGE_NAME_LONG}:${IMAGE_VERSION}
@@ -30,8 +30,8 @@ build_img_docker_job:
     - echo ${HUB_DOCKER_TOKEN} |
       docker login -u ${HUB_DOCKER_USERNAME} --password-stdin
 ##    - docker push -a $IMAGE_NAME_LONG
-    - docker push ${IMAGE_NAME_LONG}:${IMAGE_VERSION}
-#    - docker push $IMAGE_NAME_LONG:latest
+#    - docker push ${IMAGE_NAME_LONG}:${IMAGE_VERSION}
+    - docker push ${IMAGE_NAME_LONG}:latest
 ##    - docker logout
   only:
     - develop
