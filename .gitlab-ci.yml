@@ -18,7 +18,7 @@ build_img_docker_job:
   services:
     - docker:24.0.4-dind
   before_script:
-     - IMAGE_VERSION=v$CI_COMMIT_TIMESTAMP:0:10
+     - IMAGE_VERSION=v${CI_COMMIT_TIMESTAMP:0:10}
      - IMAGE_NAME_LONG=$HUB_DOCKER_USERNAME/$IMAGE_NAME
   script:
 
