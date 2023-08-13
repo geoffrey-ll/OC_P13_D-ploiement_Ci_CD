@@ -20,7 +20,7 @@ build_img_docker_job:
   before_script:
      - IMAGE_VERSION=v${CI_COMMIT_TIMESTAMP:0:10}
 #     - IMAGE_NAME_LONG=${HUB_DOCKER_USERNAME}/${IMAGE_NAME}
-     - IMAGE_NAME_LONG=goclusername/p13_images
+     - IMAGE_NAME_LONG=goclusername/pb_tag_test
   script:
 #    - docker build -t ${IMAGE_NAME_LONG}:${IMAGE_VERSION} .
     - docker build -t ${IMAGE_NAME_LONG}:test_tag .
