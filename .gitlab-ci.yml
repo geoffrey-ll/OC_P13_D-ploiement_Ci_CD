@@ -30,8 +30,8 @@ build_img_docker_job:
     - echo ${HUB_DOCKER_TOKEN} |
       docker login -u ${HUB_DOCKER_USERNAME} --password-stdin
 ##    - docker push -a $IMAGE_NAME_LONG
-#    - docker push ${IMAGE_NAME_LONG}:${IMAGE_VERSION}
     - docker push ${IMAGE_NAME_LONG}:latest
+    - docker push ${IMAGE_NAME_LONG}:${IMAGE_VERSION}
 ##    - docker logout
   only:
     - develop
