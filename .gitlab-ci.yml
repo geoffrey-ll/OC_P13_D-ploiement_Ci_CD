@@ -33,7 +33,7 @@ build_img_docker_job:
       docker login -u ${HUB_DOCKER_USERNAME} --password-stdin
 ##    - docker push -a $IMAGE_NAME_LONG
     - docker push ${IMAGE_NAME_LONG}:latest
-    - docker push ${IMAGE_NAME_LONG}:${IMAGE_VERSION}
+    - docker push ${IMAGE_NAME_LONG}:test_tag
 ##    - docker logout
   only:
     - develop
