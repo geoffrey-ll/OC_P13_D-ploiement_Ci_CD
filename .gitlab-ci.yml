@@ -18,18 +18,22 @@ build_img_docker_job:
   services:
     - docker:24.0.4-dind
   before_script:
-     - IMAGE_VERSION=v${CI_COMMIT_TIMESTAMP:0:10}
+     - IMAGE_VERSION=v$CI_COMMIT_TIMESTAMP
+     - IMAGE_VERSION_10=v${CI_COMMIT_TIMESTAMP:0:10}
+     - IMAGE_VERSION_2=v${CI_COMMIT_TIMESTAMP:0:2}
      - IMAGE_NAME_LONG=$HUB_DOCKER_USERNAME/$IMAGE_NAME
   script:
-
-    - docker build -t $IMAGE_NAME_LONG:$IMAGE_VERSION .
-    - docker tag $IMAGE_NAME_LONG:$IMAGE_VERSION $IMAGE_NAME_LONG:latest
-    - echo $HUB_DOCKER_TOKEN |
-      docker login -u $HUB_DOCKER_USERNAME --password-stdin
-#    - docker push -a $IMAGE_NAME_LONG
-    - docker push $IMAGE_NAME_LONG:$IMAGE_VERSION
-    - docker push $IMAGE_NAME_LONG:latest
-#    - docker logout
+    - echo $IMAGE_VERSION
+    - echo $IMAGE_VERSION_10
+    - echo $IMAGE_VERSION_2
+#    - docker build -t $IMAGE_NAME_LONG:$IMAGE_VERSION .
+#    - docker tag $IMAGE_NAME_LONG:$IMAGE_VERSION $IMAGE_NAME_LONG:latest
+#    - echo $HUB_DOCKER_TOKEN |
+#      docker login -u $HUB_DOCKER_USERNAME --password-stdin
+##    - docker push -a $IMAGE_NAME_LONG
+#    - docker push $IMAGE_NAME_LONG:$IMAGE_VERSION
+#    - docker push $IMAGE_NAME_LONG:latest
+##    - docker logout
   only:
     - develop
 
