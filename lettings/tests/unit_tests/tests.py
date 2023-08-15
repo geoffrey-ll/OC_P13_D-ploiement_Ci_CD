@@ -1,3 +1,4 @@
+"""Tests sur les vues de l'app lettings."""
 from django.test import TestCase
 from django.urls import reverse
 

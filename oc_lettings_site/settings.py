@@ -20,7 +20,7 @@ DEBUG = config("DEBUG")
 if eval(DEBUG) is False:
     ALLOWED_HOSTS = [f"{os.getenv('HOSTS_PROD')}"]
     sentry_sdk.init(
-        dsn=f"{os.getenv('SENTRY_DNS')}",
+        dsn=f"{os.getenv('SENTRY_DSN')}",
         integrations=[DjangoIntegration()],
         send_default_pii=True,
         traces_sample_rate=1.0,

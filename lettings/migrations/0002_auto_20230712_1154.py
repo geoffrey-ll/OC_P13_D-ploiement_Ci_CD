@@ -1,8 +1,10 @@
+"""Migration des données des anciennes tables, vers les nouvelles."""
 from django.apps import apps as global_apps
 from django.db import migrations
 
 
 def move_data_from_old_lettings_to_new_lettings(apps, schema_editor):
+    """Transfert des data de lettings vers leurs nouvelles tables."""
     try:
         OldLetting = apps.get_model("oc_lettings_site", "Letting")
     except LookupError:
