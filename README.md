@@ -41,12 +41,12 @@ Dans le reste de la documentation sur le développement local, il est supposé q
 - `nano .env`
 - Copier et coller ceci :
   ```
-  SECRET_KEY="<your_secret_key"
+  SECRET_KEY="<your_secret_key>"
   DEBUG=True
   DATABASE_ENGINE=django.db.backends.sqlite3
   DATABASE_NAME=oc-lettings-site.sqlite3
    ```
-- Enregistrer avec `Ctrl + X` puis `o` et `Enter`
+- Enregistrer avec `Ctrl + X` puis `o` puis `Enter`
 
 #### Exécuter le site
 
@@ -67,7 +67,7 @@ Dans le reste de la documentation sur le développement local, il est supposé q
 
 - `cd /path/to/P13_GL_Open_County_Lettings`
 - `source venv/bin/activate`
-- `pytest`
+- `python manage.py test`
 
 #### Base de données
 
@@ -151,13 +151,15 @@ Utilisation de PowerShell, comme ci-dessus sauf :
 
 #### Accéder au DSN d'un projet existant
 
-- Depuis votre compte Sentry, allez dans `Settings`-->`Projects`-->`<your_project_name>`-->`Client keys (DSN)`
+- Depuis votre compte Sentry, allez dans \
+  `Settings`-->`Projects`-->`<your_project_name>`-->`Client keys (DSN)`
 
 ### Render - API Key & Web Service & Variables d'environnements
 
-#### API Key Render à ajouter aux variables d'environnements Gitlab
+#### API Key Render
 
-- Depuis votre compte Render, allez dans `Account Settings` --> `API Keys` --> `Create API Key` --> `<your-api-name>` \
+- Depuis votre compte Render, allez dans \
+  `Account Settings`-->`API Keys`-->`Create API Key`-->`<your-api-name>` \
   ![Exemple de création d'API Key sur Render](readme_files/ex_render_create_api_key.png)
 
 
@@ -166,16 +168,23 @@ Utilisation de PowerShell, comme ci-dessus sauf :
 - Depuis votre compte Render, allez dans `New +`-->`Web Service`
 - Connecter Render au repo Gitlab
 - Dans les configurations :
-  - `Name` --> `<your-site-name` ![Exemple de nom de site sur Render](readme_files/ex_render_name_site.png)
-  - `Region` --> `Frankfurt (EU Central)` ![Exemple de choix de region sur Render](readme_files/ex_render_region.png)
-  - `Branch` --> `master` ![Exemple de branch de déploiement sur Render](readme_files/ex_render_branch.png)
-  - `Runtime` --> `Python 3` ![Exemple du runtime sur Render](readme_files/ex_render_runtime.png)
-  - `Build Command` -- `sh build.sh` ![Exemple de la build command sur Render](readme_files/ex_render_build_command.png)
-  - `Start Command` --> `gunicorn oc_lettings_site.wsgi:application` ![Exemple de la start command sur Render](readme_files/ex_render_start_command.png)
+  - `Name` --> `<your-site-name>` \
+    ![Exemple de nom de site sur Render](readme_files/ex_render_name_site.png)
+  - `Region` --> `Frankfurt (EU Central)` \
+    ![Exemple de choix de region sur Render](readme_files/ex_render_region.png)
+  - `Branch` --> `master` \
+    ![Exemple de branch de déploiement sur Render](readme_files/ex_render_branch.png)
+  - `Runtime` --> `Python 3` \
+    ![Exemple du runtime sur Render](readme_files/ex_render_runtime.png)
+  - `Build Command` --> `sh build.sh` \
+    ![Exemple de la build command sur Render](readme_files/ex_render_build_command.png)
+  - `Start Command` --> `gunicorn oc_lettings_site.wsgi:application` \
+    ![Exemple de la start command sur Render](readme_files/ex_render_start_command.png)
   - `Advanced` --> `Add Environment Variable` \
-  Voir [variables d'environnements Render nécessaires](#variables-denvironnements-nécessaires) \
+    Voir [variables d'environnements Render nécessaires](#env_var_render) \
     ![Exemple d'ajout de variable d'environnement sur Render](readme_files/ex_render_advanced_&_ex_add_variable.png)
-  - `Advanced` --> `Auto-Deploy` --> `No` ![Exemple de l'auto-deploy usr Render](readme_files/ex_render_auto_deploy.png)
+  - `Advanced` --> `Auto-Deploy` --> `No` \
+    ![Exemple de l'auto-deploy usr Render](readme_files/ex_render_auto_deploy.png)
 
 #### Ajout de variable d'environnement depuis un Web Service existant
 
