@@ -24,7 +24,7 @@ build_img_docker_job:
     - docker build -t ${IMAGE_NAME_LONG}:${IMAGE_VERSION} .
     - docker tag ${IMAGE_NAME_LONG}:${IMAGE_VERSION} ${IMAGE_NAME_LONG}:latest
     - echo ${HUB_DOCKER_TOKEN} |
-      docker login -u ${HUB_DOCKER_TOKEN} --password-stdin
+      docker login -u ${HUB_DOCKER_USERNAME} --password-stdin
     - docker push ${IMAGE_NAME_LONG}:{IMAGE_VERSION}
     - docker push ${IMAGE_NAME_LONG}:latest
     - docker logout
