@@ -1,3 +1,4 @@
+"""Vues de l'app lettings."""
 from django.shortcuts import render
 
 from lettings.models import Letting
@@ -8,6 +9,7 @@ from lettings.models import Letting
 # tempor et, bibendum id arcu. Vestibulum ante ipsum primis in faucibus
 # orci luctus et ultrices posuere cubilia curae; Cras eget scelerisque
 def index(request):
+    """Page d'accueil de lettings."""
     lettings_list = Letting.objects.all()
     context = {'lettings_list': lettings_list}
     return render(request, "lettings/index.html", context)
@@ -27,6 +29,7 @@ def index(request):
 # Mauris condimentum auctor elementum. Donec quis nisi ligula. Integer
 # vehicula tincidunt enim, ac lacinia augue pulvinar sit amet.
 def letting(request, letting_id):
+    """Vue d'un letting."""
     letting = Letting.objects.get(id=letting_id)
     context = {
         'title': letting.title,

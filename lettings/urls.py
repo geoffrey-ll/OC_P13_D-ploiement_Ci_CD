@@ -1,3 +1,4 @@
+"""Patterns d'urls de l'app lettings."""
 from django.urls import path
 
 from lettings.views import letting, index
