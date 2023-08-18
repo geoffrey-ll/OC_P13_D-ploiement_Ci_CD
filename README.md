@@ -92,6 +92,22 @@ Utilisation de PowerShell, comme ci-dessus sauf :
 - Pour activer l'environnement virtuel, `.\venv\Scripts\Activate.ps1` 
 - Remplacer `which <my-command>` par `(Get-Command <my-command>).Path`
 
+### Image docker
+
+Pour récupérer la dernière version de l'image :\
+`docker pull goclusername/p13_open_county_lettings_images:latest`
+
+Pour démarrer l'image\
+`docker run --name cont --env-file .env --publish 8000:8000 -t goclusername/p13_open_county_lettings_images`\
+Le fichier .env doit contenir :
+
+```
+SECRET_KEY="<your_secret_key>"
+DEBUG=True
+DATABASE_ENGINE=django.db.backends.sqlite3
+DATABASE_NAME=oc-lettings-site.sqlite3
+```
+
 ## Déploiement (via une pipeline CI/CD)
 
 ### Fonctionnement de la pipeline CI/CD
