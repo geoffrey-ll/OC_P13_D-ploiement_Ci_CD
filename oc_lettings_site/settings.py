@@ -29,9 +29,6 @@ if eval(DEBUG) is False:
 if eval(DEBUG) is True:
     ALLOWED_HOSTS = ["0.0.0.0", "127.0.0.1"]
 
-
-
-
 DJANGO_APPS = [
     'django.contrib.admin',
     'django.contrib.auth',
