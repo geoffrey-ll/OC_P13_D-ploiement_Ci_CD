@@ -13,8 +13,8 @@ class ProfilesIndexTest(TestCase):
     def setUpTestData(cls):
         """Configuration commune et initiale pour la class.
 
-        La DB de test doit rester non modifié par les tests, car appeler
-        la méthode n'est appelé qu'une seule fois pour l'ensemble des
+        La DB de test doit rester non modifié par les tests, car la
+        méthode n'est appelée qu'une seule fois pour l'ensemble des
         tests de la class.
         """
         cls.user = User.objects.create(
@@ -52,8 +52,8 @@ class ProfilesLettingTest(TestCase):
     def setUpTestData(cls):
         """Configuration commune et initiale pour la class.
 
-        La DB de test doit rester non modifié par les tests, car appeler
-        la méthode n'est appelé qu'une seule fois pour l'ensemble des
+        La DB de test doit rester non modifié par les tests, car la
+        méthode n'est appelé qu'une seule fois pour l'ensemble des
         tests de la class.
         """
         cls.user = User.objects.create(
