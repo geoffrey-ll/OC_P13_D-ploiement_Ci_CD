@@ -217,3 +217,9 @@ DATABASE_NAME=oc-lettings-site.sqlite3
   SECRET_KEY		<your-secret-key-generated>
   SENTRY_DSN		<your-dsn-sentry>
   ```
+
+
+##### Couverture de tests
+
+Fichiers omits dans pour la couverture de tests dans .coveragerc
+![Couverture de tests](readme_files/couverture_tests.png)
